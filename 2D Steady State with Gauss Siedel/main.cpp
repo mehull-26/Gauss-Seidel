@@ -5,7 +5,7 @@
 int main()
 {
 	int grid_size = 4;
-	cout << "Enter the grid size: ";
+	cout << "Enter the grid size (eg: 10 for grid spacing of 0.1): ";
 	cin >> grid_size;
 
 	MATRIX left_matrix(grid_size * grid_size, grid_size * grid_size);
@@ -61,6 +61,8 @@ int main()
 	ofstream fout;
 	fout.open("solution.txt");
 	fout.clear();
+	fout << "Grid Size: " << grid_size << "\n";
+	fout << "Grid Spacing: " << 1.0f / grid_size << "\n\n";
 
 	for (int i = grid_size -1; i >= 0; i--)
 	{
@@ -71,5 +73,9 @@ int main()
 		fout << "\n";
 	}
 	cout << "Solution written to solution.txt\n";
+	fout.close();
+
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear any existing input
+	cin.get();
 	return 0;
 }
