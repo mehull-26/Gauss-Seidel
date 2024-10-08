@@ -1,11 +1,12 @@
 #include "utility.h"
+#include <iostream>
 
-vector<float> GS_solution(int dimension, MATRIX Left_Matrix, MATRIX Right_Matrix, float threshold)
+vector<double> GS_solution(int dimension, MATRIX Left_Matrix, MATRIX Right_Matrix, double threshold)
 {
-	vector<float> solution(dimension, 1.0f);
+	vector<double> solution(dimension, 1.0f);
 
-	float convergence_CKR = 1000;
-	float convergence_threshold = threshold;
+	double convergence_CKR = 1000;
+	double convergence_threshold = threshold;
 
 	while (abs(solution[0] - convergence_CKR) > convergence_threshold)
 	{
@@ -13,7 +14,7 @@ vector<float> GS_solution(int dimension, MATRIX Left_Matrix, MATRIX Right_Matrix
 
 		for (int i = 0; i < dimension; i++)
 		{
-			float sigma = 0;
+			double sigma = 0;
 			for (int j = 0; j < dimension; j++)
 			{
 				if (i != j)
@@ -22,6 +23,7 @@ vector<float> GS_solution(int dimension, MATRIX Left_Matrix, MATRIX Right_Matrix
 				}
 			}
 			solution[i] = (Right_Matrix[i][0] - sigma) / Left_Matrix[i][i];
+
 		}
 	}
 
