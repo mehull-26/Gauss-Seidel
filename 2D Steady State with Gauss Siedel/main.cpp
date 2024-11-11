@@ -1,6 +1,10 @@
 #include <fstream>
 #include <iostream>
 #include "utility.h"
+#include <chrono>
+
+using namespace std;
+using namespace std::chrono;
 
 int main()
 {
@@ -8,6 +12,8 @@ int main()
 	cout << "Enter the grid size (eg: 10 for grid spacing of 0.1): ";
 	cin >> grid_size;
 
+	auto start = high_resolution_clock().now();
+	
 	MATRIX left_matrix(grid_size * grid_size, grid_size * grid_size);
 
 	MATRIX right_matrix(grid_size * grid_size, 1);
@@ -75,6 +81,9 @@ int main()
 	cout << "Solution written to solution.txt\n";
 	fout.close();
 
+	auto stop = high_resolution_clock().now();
+	auto duration = duration_cast<seconds>(stop - start);
+	cout << "Time taken: " << duration.count() << " seconds\n";
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear any existing input
 	cin.get();
 	return 0;
